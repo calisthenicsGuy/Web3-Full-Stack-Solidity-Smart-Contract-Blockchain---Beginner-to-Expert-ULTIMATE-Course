@@ -52,6 +52,11 @@ contract FirstContract {
     }
 
     // calldata: memory type that can't be changed
-    // memory: memory type that can be changed
-    // storage: type that create new type instance of given struct type but they are have same reference 
+    // memory: memory type that can be changed - use to read the data
+    // storage: type that create new type instance of given struct type but they are have same reference - use to update the data
+
+    // public - all can access
+    // external - Cannot be accessed internally, only externally
+    // internal - only this contract and contracts deriving from it can access
+    // private - can be accessed only from this contract
 }
