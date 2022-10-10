@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.2.2",
+    "http-server": "^14.1.1"
+  }
+}

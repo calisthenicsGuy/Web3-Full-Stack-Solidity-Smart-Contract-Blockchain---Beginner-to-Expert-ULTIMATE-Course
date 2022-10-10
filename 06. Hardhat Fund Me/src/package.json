@@ -5,7 +5,11 @@
     "@chainlink/contracts": "^0.3.1",
     "ethers": "^5.7.1",
     "hardhat": "^2.11.2",
-    "hardhat-deploy": "^0.11.18"
+    "hardhat-deploy": "^0.11.18",
+    "hardhat-gas-reporter": "^1.0.7",
+    "solidity-coverage": "^0.7.18",
+    "chai": "^4.3.4",
+    "ethereum-waffle": "^3.4.0"
   },
   "dependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",

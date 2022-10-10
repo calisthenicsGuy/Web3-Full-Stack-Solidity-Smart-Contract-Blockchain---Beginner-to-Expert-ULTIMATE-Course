@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <title>Fund Me App</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="text-center mt-3">Welcome!</h2>
+      <hr />
+      <button class="btn btn-primary mt-4" id="connect-btn">Connect</button>
+      <hr />
+      <div class="input-group mb-3">
+        <input id="fund-amount-input" type="text" class="form-control" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" id="fund-btn">Fund</button>
+        </div>
+      </div>
+      <hr />
+      <button class="btn btn-primary" id="balance-btn">Balance</button>
+      <span id="balance-span" class="badge badge-primary text-dark"></span>
+      <hr />
+      <button class="btn btn-primary" id="withdraw-btn">Withdraw</button>
+    </div>
+
+    <script src="./index.js" type="module"></script>
+    <script src="./node_modules/bootstrap/js/src/"></script>
+  </body>
+</html>
