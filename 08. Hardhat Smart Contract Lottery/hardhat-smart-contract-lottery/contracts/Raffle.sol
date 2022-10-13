@@ -79,7 +79,6 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
         bytes memory /* checkData */
     ) 
         public
-        view
         override
         returns (
             bool upKeepNeeded,
