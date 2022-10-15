@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "hardhat": "^2.12.0",
+    "hardhat-gas-reporter": "^1.0.9"
+  },
+  "dependencies": {
+    "@aave/protocol-v2": "github:aave/protocol-v2",
+    "@nomiclabs/hardhat-etherscan": "^3.1.1",
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "@openzeppelin/contracts": "^4.7.3",
+    "dotenv": "^16.0.3",
+    "hardhat-contract-sizer": "^2.6.1",
+    "hardhat-deploy": "^0.11.18",
+    "solidity-coverage": "^0.8.2"
+  }
+}
