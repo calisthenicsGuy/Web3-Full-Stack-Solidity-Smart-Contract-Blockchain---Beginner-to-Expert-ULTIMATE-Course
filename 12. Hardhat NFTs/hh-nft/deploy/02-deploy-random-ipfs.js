@@ -4,10 +4,25 @@ const {
   networkConfig,
 } = require("../helper-hardhat-config");
 const { verify } = require("../utils/verify");
-const { storeImages } = require("../utils/uploadToPinata");
+const {
+  storeImages,
+  storeTokeUriMetadata,
+} = require("../utils/uploadToPinata");
 
 const VRF_SUB_FUND_AMOUNT = ethers.utils.parseEther("2");
 const IMAGES_LOCATION = "./images/random";
+
+const metadataTemplate = {
+  name: "",
+  description: "",
+  image: "",
+  attributes: [
+    {
+      trait_type: "Cutness",
+      value: 100,
+    },
+  ],
+};
 
 module.exports = async function ({ getNamedAccounts, deployments }) {
   const { deployer } = await getNamedAccounts();
@@ -57,16 +72,15 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
   if (process.env.UPLOAD_TO_PINATA == "true") {
     tokenUris = await handleTokenUris();
   }
-  await storeImages(IMAGES_LOCATION);
 
-  //   const arguments = [
-  //     vrfCoordinatorV2Address,
-  //     subscriptionId,
-  //     gasLane,
-  //     callbackGasLimit,
-  //     /* */,
-  //     mintFee,
-  //   ];
+  const arguments = [
+    vrfCoordinatorV2Address,
+    subscriptionId,
+    gasLane,
+    callbackGasLimit,
+    tokenUris,
+    mintFee,
+  ];
   const randomIpfsNft = await deploy("RandomIpfsNft", {
     from: deployer,
     args: arguments,
@@ -80,6 +94,22 @@ async function handleTokenUris() {
   // store the image in IPFS
   // store the metadata in IPFS
 
+  const { responses: imgaeUploadResponses, files } = await storeImages(
+    IMAGES_LOCATION
+  );
+
+  for (imageUploadIndex in imgaeUploadResponses) {
+    let tokenUriMetadata = { ...metadataTemplate };
+
+    tokenUriMetadata.name = files[imageUploadIndex].replace(".png", "");
+    tokenUriMetadata.description = `An adorable ${tokenUriMetadata.name} pup!`;
+    tokenUriMetadata.image = `ipfs://${imgaeUploadResponses[imageUploadIndex].IpfsHash}`;
+    console.log(`Uploading ${tokenUriMetadata.name}...`);
+    // store to JSON
+    const metadataUploadResponse = await storeTokeUriMetadata(tokenUriMetadata);
+    tokenUris.push(`ipfs://${metadataUploadResponse.IpfsHash}`);
+  }
+  console.log("Token URIs uploaded!");
   return tokenUris;
 }
 

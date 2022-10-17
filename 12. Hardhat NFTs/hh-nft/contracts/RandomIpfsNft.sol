@@ -47,6 +47,8 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
         i_callbackGasLimit = callbackGasLimit;
         s_tokenUris = tokenUris;
         i_mintFee = mintFee;
+
+        s_tokenCounter = 0;
     }
 
     function requestNft() public payable returns (uint256 requestId) {
@@ -93,7 +95,7 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
         uint8[3] memory chancheArray = getChanceArray();
 
         for (uint i = 0; i < chancheArray.length; i++) {
-            if (moddedRng >= cumulativeSum && moddedRng <= cumulativeSum) {
+            if (moddedRng >= cumulativeSum && moddedRng <= chancheArray[i]) {
                 return Breed(i);
             }
 
@@ -113,6 +115,10 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
         }
     }
 
+    function getDogTokenUris(uint256 index) public view returns(string memory) {
+        return s_tokenUris[index];
+    }
+
     function getChanceArray() public pure returns (uint8[3] memory) {
         return [10, 30, 100];
     }
@@ -127,5 +133,25 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
 
     function getTokenCounter() public view returns(uint256) {
         return s_tokenCounter;
+    }
+
+    function getSuscriptionId() public view returns(uint256) {
+        return i_subscriptionId;
+    }
+
+    function getGasLane() public view returns(bytes32) {
+        return i_gasLane;
+    }
+
+    function getCallbackGasLimit() public view returns(uint32) {
+        return i_callbackGasLimit;
+    }
+
+    function getRequestConfirmations() public pure returns(uint16) {
+        return REQUEST_CONFIRMATIONS;
+    }
+
+    function getNumWords() public pure returns(uint32) {
+        return NUM_WORDS;
     }
 }
