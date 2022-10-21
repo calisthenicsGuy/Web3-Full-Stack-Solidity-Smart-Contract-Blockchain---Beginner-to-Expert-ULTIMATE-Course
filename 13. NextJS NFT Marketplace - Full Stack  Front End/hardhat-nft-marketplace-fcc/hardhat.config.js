@@ -26,6 +26,18 @@ module.exports = {
       url: GOERLI_RPC_URL,
       accounts: [GOERLI_PRIVATE_KEY],
     },
+    // mainnet: {
+    //   url: MAINNET_RPC_URL,
+    //   accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+    //   saveDeployments: true,
+    //   chainId: 1,
+    // },
+    // polygon: {
+    //   url: POLYGON_MAINNET_RPC_URL,
+    //   accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+    //   saveDeployments: true,
+    //   chainId: 137,
+    // },
   },
   solidity: {
     compilers: [

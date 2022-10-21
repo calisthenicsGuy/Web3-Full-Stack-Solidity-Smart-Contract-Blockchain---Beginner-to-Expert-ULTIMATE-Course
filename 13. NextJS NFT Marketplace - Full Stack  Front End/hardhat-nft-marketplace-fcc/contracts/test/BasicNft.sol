@@ -16,9 +16,9 @@ contract BasicNft is ERC721 {
 
     function mintNft() public {
         _safeMint(msg.sender, s_tokenCounter);
-        s_tokenCounter++;
-
         emit DogMinted(s_tokenCounter);
+
+        s_tokenCounter++;
     }
 
     function tokenURI(uint256 tokenId)
@@ -32,5 +32,9 @@ contract BasicNft is ERC721 {
             "ERC721Metadata: URI query for nonexistent token"
         );
         return TOKEN_URI;
+    }
+
+    function getTokenCounter() external view returns (uint256) {
+        return s_tokenCounter;
     }
 }
