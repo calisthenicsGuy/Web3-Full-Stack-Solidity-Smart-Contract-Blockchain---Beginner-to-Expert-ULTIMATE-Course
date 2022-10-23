@@ -1,4 +1,5 @@
 const { network, ethers, deployments, getNamedAccounts } = require("hardhat");
+const { movieBlocks } = require("../utils/movie-blocks");
 
 async function mintAndList() {
   const { deployer } = await getNamedAccounts();
@@ -32,6 +33,10 @@ async function mintAndList() {
   );
 
   console.log("--------------------------------------------------");
+
+  if (network.config.chainId.toString() === "31337") {
+    await movieBlocks(2, (sleepAmount = 1000));
+  }
 }
 
 mintAndList()

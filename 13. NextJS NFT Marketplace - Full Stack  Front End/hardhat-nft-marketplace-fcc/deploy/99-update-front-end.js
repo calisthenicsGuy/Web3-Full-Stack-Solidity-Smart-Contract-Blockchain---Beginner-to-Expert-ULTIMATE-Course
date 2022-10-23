@@ -2,7 +2,8 @@ const { network, ethers } = require("hardhat");
 require("dotenv").config();
 const fs = require("fs");
 
-const frontendContractFiles = "../../constants/networkMapping.json";
+const frontendContractFiles = "../../nextjs-nft-marketplace-fcc/constants/networkMapping.json";
+const frontEndAbiLocation = "../../nextjs-nft-marketplace-fcc/constants/";
 
 module.exports = async function () {
   if (process.env.UPDATE_FRONT_END) {
@@ -35,6 +36,26 @@ async function updateContractAddresses() {
   fs.writeSync(frontendContractFiles, JSON.stringify(contractAddresses));
 }
 
-async function updateAbi() {}
+async function updateAbi() {
+  const nftMarketplace = await ethers.getContract("NftMarketplace");
+  fs.writeFileSync(
+    `${frontEndAbiLocation}NftMarketplace.json`,
+    nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
+  );
+  fs.writeFileSync(
+    `${frontEndAbiLocation2}NftMarketplace.json`,
+    nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
+  );
+
+  const basicNft = await ethers.getContract("BasicNft");
+  fs.writeFileSync(
+    `${frontEndAbiLocation}BasicNft.json`,
+    basicNft.interface.format(ethers.utils.FormatTypes.json)
+  );
+  fs.writeFileSync(
+    `${frontEndAbiLocation2}BasicNft.json`,
+    basicNft.interface.format(ethers.utils.FormatTypes.json)
+  );
+}
 
 module.exports.tags = ["all", "frontend"];
