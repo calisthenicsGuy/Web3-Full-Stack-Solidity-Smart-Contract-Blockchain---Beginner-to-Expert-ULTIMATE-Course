@@ -42,18 +42,10 @@ async function updateAbi() {
     `${frontEndAbiLocation}NftMarketplace.json`,
     nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
   );
-  fs.writeFileSync(
-    `${frontEndAbiLocation2}NftMarketplace.json`,
-    nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
-  );
 
   const basicNft = await ethers.getContract("BasicNft");
   fs.writeFileSync(
     `${frontEndAbiLocation}BasicNft.json`,
-    basicNft.interface.format(ethers.utils.FormatTypes.json)
-  );
-  fs.writeFileSync(
-    `${frontEndAbiLocation2}BasicNft.json`,
     basicNft.interface.format(ethers.utils.FormatTypes.json)
   );
 }
