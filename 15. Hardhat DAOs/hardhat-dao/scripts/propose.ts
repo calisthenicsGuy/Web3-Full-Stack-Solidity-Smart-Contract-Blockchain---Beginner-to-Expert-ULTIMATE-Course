@@ -30,7 +30,11 @@ export async function propose(
     proposalDescription
   );
   const txReceipt = await proposeTx.wait(1);
-  const proposalId = txReceipt.event[0].args.proposalId;
+  const proposalId = txReceipt.events[0].args.proposalId;
+
+  let proprsalsIds = JSON.parse(fs.readFileSync(proposalsFile, "utf8"));
+  proprsalsIds[network.config.chainId!.toString()].push(proposalId.toString());
+  fs.writeFileSync(proposalsFile, JSON.stringify(proprsalsIds));
 
   if (developmentChains.includes(network.name)) {
     await moveBlocks(VOTING_DELAY + 1);

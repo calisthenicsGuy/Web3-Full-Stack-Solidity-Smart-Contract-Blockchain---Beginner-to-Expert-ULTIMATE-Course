@@ -16,7 +16,7 @@ export interface networkConfigItem {
   }
   
   export const developmentChains = ["hardhat", "localhost"]
-  export const proposalsFile = "proposals.json"
+  export const proposalsFile = "../proposals.json"
   
   // Governor Values
   export const QUORUM_PERCENTAGE = 4 // Need 4% of voters to pass

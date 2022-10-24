@@ -12,7 +12,7 @@ const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || "";
 const GOERLI_RPC_URL =
   process.env.GOERLI_RPC_URL ||
   "https://eth-goerli.alchemyapi.io/v2/your-api-key";
-const PRIVATE_KEY = process.env.PRIVATE_KEY || "privatKey";
+const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY || "privatKey";
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "";
 
 const config: HardhatUserConfig = {
@@ -28,7 +28,7 @@ const config: HardhatUserConfig = {
     },
     goerli: {
       url: GOERLI_RPC_URL,
-      accounts: [PRIVATE_KEY],
+      accounts: [GOERLI_PRIVATE_KEY],
       chainId: 5,
     },
   },
