@@ -1,0 +1,1 @@
+https://github.com/PatrickAlphaC/hardhat-security-fcc
