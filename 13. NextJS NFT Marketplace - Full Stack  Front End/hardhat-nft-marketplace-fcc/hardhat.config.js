@@ -21,10 +21,10 @@ module.exports = {
       blockConfirmations: 1,
     },
     goerli: {
-      chainId: 5,
-      blockConfirmations: 6,
       url: GOERLI_RPC_URL,
       accounts: [GOERLI_PRIVATE_KEY],
+      chainId: 5,
+      blockConfirmations: 6,
     },
     // mainnet: {
     //   url: MAINNET_RPC_URL,
